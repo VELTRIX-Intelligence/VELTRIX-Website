@@ -13,11 +13,24 @@ npm run dev      # http://localhost:3000
 npm run build    # production build
 ```
 
+## Hosting (GitHub Pages)
+
+Every push to `master` runs `.github/workflows/deploy-pages.yml`, which builds the site as static
+files (`output: 'export'`) and publishes it to
+https://veltrix-intelligence.github.io/VELTRIX-Website/
+
+- The workflow sets `NEXT_PUBLIC_BASE_PATH=/VELTRIX-Website`. Local dev leaves it empty, so the
+  site still runs at http://localhost:3000/. If you add a custom domain, remove that line.
+- The Formspree ID comes from the repository variable `FORMSPREE_ID`
+  (Settings → Secrets and variables → Actions → Variables).
+- Static export can't use server features (server actions, image optimisation, partial
+  prerendering), so `cacheComponents` is off and images are unoptimised.
+
 ## Still to supply
 
 | What | Where to change it |
 |---|---|
-| Formspree form ID | copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_FORMSPREE_ID` |
+| Formspree form ID | live site: repository variable `FORMSPREE_ID`; local dev: copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_FORMSPREE_ID` |
 | Phone, LinkedIn, GitHub, X | `lib/site.ts` (currently shown as "Coming soon") |
 | Reply time on the form's success message | `lib/site.ts` → `replyTime` |
 | Real products (name, line, division, status, platforms, pricing, 1600×1000 screenshot, link) | `lib/products.ts` |
