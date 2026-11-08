@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VELTRIX website
 
-## Getting Started
+Three-page marketing site (Home, Products, Get in touch) plus Privacy and Terms, built to the
+VELTRIX Website Plan and the `veltrix-design` system.
 
-First, run the development server:
+Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · Motion · GSAP · react-three-fiber · d3
+
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Still to supply
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | Where to change it |
+|---|---|
+| Formspree form ID | copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_FORMSPREE_ID` |
+| Phone, LinkedIn, GitHub, X | `lib/site.ts` (currently shown as "Coming soon") |
+| Reply time on the form's success message | `lib/site.ts` → `replyTime` |
+| Real products (name, line, division, status, platforms, pricing, 1600×1000 screenshot, link) | `lib/products.ts` |
+| Spline hero scene | export to `public/3d/`, set `HERO_SPLINE_SCENE` in `components/home/HeroVisual.tsx` |
+| Legal details in [square brackets] | `app/privacy/page.tsx`, `app/terms/page.tsx` — drafts, have them reviewed |
+| Favicon and 1200×630 social image | `app/icon.*`, `app/opengraph-image.*` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Components
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Plan component | File | Source |
+|---|---|---|
+| Pill Nav | `components/ui/PillNav.tsx` | React Bits, restyled |
+| Staggered Menu | `components/ui/StaggeredMenu.tsx` | React Bits, restyled + focus trap |
+| Gradual Blur | `components/ui/GradualBlur.tsx` | React Bits |
+| Rotating Text | `components/ui/RotatingText.tsx` | React Bits |
+| Scroll Reveal | `components/ui/ScrollReveal.tsx` | React Bits |
+| Scroll Stack | `components/ui/ScrollStack.tsx` | React Bits, restyled |
+| Spline Scene + Spotlight | `components/ui/SplineScene.tsx`, `Spotlight.tsx` | 21st.dev pattern; coded rings stand-in in `components/home/RingsScene.tsx` |
+| Glass Blog Card → ProductCard | `components/products/ProductCard.tsx` | UI TripleD (MIT), adapted |
+| Contact with Globe | `components/ui/GlobeWireframe.tsx` + `components/contact/*` | ScrollX UI (MIT), adapted |
+| Spotlight Card | `components/ui/GlowCard.tsx` | **stand-in** — swap for the 21st.dev original |
+| Halftone Wordmark Footer | `components/ui/HalftoneWordmark.tsx` | **stand-in** — swap for the 21st.dev original |
