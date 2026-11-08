@@ -15,7 +15,7 @@ import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
 import { gsap } from 'gsap'
-import { cn } from '@/lib/utils'
+import { cn, normalizePath } from '@/lib/utils'
 
 export interface StaggeredMenuItem {
   label: string
@@ -51,7 +51,7 @@ export function StaggeredMenu({
   onMenuOpen,
   onMenuClose,
 }: StaggeredMenuProps) {
-  const pathname = usePathname()
+  const pathname = normalizePath(usePathname())
   const router = useRouter()
   const [open, setOpen] = useState(false)
   // Keeps the overlay hidden (not just off-screen) until first opened and after closing.

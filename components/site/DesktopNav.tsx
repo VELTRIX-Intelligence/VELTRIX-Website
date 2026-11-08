@@ -7,11 +7,11 @@ import { NavCTA } from '@/components/ui/primitives'
 import { Wordmark } from '@/components/site/Wordmark'
 import { navItems } from '@/lib/site'
 import { useScrolledPast } from '@/components/site/useScrolledPast'
-import { cn } from '@/lib/utils'
+import { cn, normalizePath } from '@/lib/utils'
 
 /** Desktop top bar (≥768px): wordmark left, Pill Nav centre, white pill CTA right. */
 export function DesktopNav() {
-  const pathname = usePathname()
+  const pathname = normalizePath(usePathname())
   const scrolled = useScrolledPast(80)
 
   return (
